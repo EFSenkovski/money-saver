@@ -1,10 +1,10 @@
 package com.eduardo.moneysaver.core.application.controller.auth;
 
-import com.eduardo.moneysaver.core.application.service.user.UserService;
-import com.eduardo.moneysaver.core.domain.model.User;
 import com.eduardo.moneysaver.core.application.controller.auth.dto.AuthDto;
 import com.eduardo.moneysaver.core.application.controller.auth.dto.LoginResp;
 import com.eduardo.moneysaver.core.application.controller.auth.dto.RegisterUserDto;
+import com.eduardo.moneysaver.core.application.service.user.UserService;
+import com.eduardo.moneysaver.core.domain.model.User;
 import com.eduardo.moneysaver.core.infra.security.token.service.TokenService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +33,7 @@ public class AuthController {
         this.userService = userService;
         this.tokenService = tokenService;
     }
+
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody @Valid AuthDto authDto) {
         var unauthenticatedAuthentication = new UsernamePasswordAuthenticationToken(authDto.email(), authDto.password()); //UsernamePasswordAuthenticationToken é uma implementação de Authentication fornecida pelo Spring. Nesta linha ele é criado com as credenciais, mas ainda não está autenticado

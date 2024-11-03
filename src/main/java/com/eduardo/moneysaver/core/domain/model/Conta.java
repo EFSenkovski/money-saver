@@ -24,7 +24,8 @@ public class Conta {
     private Long id;
     private String nome;
     private Double saldo;
-    @ManyToOne @JoinColumn(name = "user_id")
+    @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
     @OneToMany(mappedBy = "conta")
     private List<Movimento> movimentos;
@@ -38,18 +39,19 @@ public class Conta {
         criadoEm = LocalDateTime.now();
     }
 
+    public static Builder newConta() {
+        return new Builder();
+    }
+
     public void updateSaldo(Double valor, TipoMovimento tipoMovimento) {
         LOGGER.info(String.format("Atualizando saldo da conta %s", id));
         if (tipoMovimento.equals(TipoMovimento.E)) {
             this.saldo += valor;
         } else if (tipoMovimento.equals(TipoMovimento.S)) {
-            if (this.saldo < valor) throw new SaldoInsuficienteException("Saldo insuficiente para efetuar a movimentação");
+            if (this.saldo < valor)
+                throw new SaldoInsuficienteException("Saldo insuficiente para efetuar a movimentação");
             this.saldo -= valor;
         }
-    }
-
-    public static Builder newConta() {
-        return new Builder();
     }
 
     public static final class Builder {

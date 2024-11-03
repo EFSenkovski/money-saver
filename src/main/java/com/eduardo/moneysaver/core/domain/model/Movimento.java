@@ -30,9 +30,11 @@ public class Movimento {
     private TipoMovimento tipo;
     @Column(name = "data_efetivacao")
     private LocalDate dataEfetivacao;
-    @ManyToOne @JoinColumn(name = "user_id")
+    @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
-    @ManyToOne @JoinColumn(name = "conta_id")
+    @ManyToOne
+    @JoinColumn(name = "conta_id")
     private Conta conta;
     @Column(name = "criado_em")
     private LocalDateTime criadoEm;
@@ -55,16 +57,16 @@ public class Movimento {
         criadoEm = LocalDateTime.now();
     }
 
+    public static Builder newMovimento() {
+        return new Builder();
+    }
+
     public void efetivar() {
         LOGGER.info(String.format("Processando movimentação id: %s", this.id));
         if (this.getStatus().equals(StatusMovimento.E))
             throw new MovimentoJaEfetivadoException("Movimentação já efetivada" + this.getId());
         this.status = StatusMovimento.E;
         this.conta.updateSaldo(this.valor, this.tipo);
-    }
-
-    public static Builder newMovimento() {
-        return new Builder();
     }
 
     public static final class Builder {

@@ -4,11 +4,7 @@ import com.eduardo.moneysaver.common.CurrentUserProvider;
 import com.eduardo.moneysaver.core.application.controller.contas.dto.ContaResp;
 import com.eduardo.moneysaver.core.application.controller.contas.dto.NewContaDto;
 import com.eduardo.moneysaver.core.domain.model.Conta;
-import com.eduardo.moneysaver.core.domain.model.Movimento;
-import com.eduardo.moneysaver.core.domain.model.TipoMovimento;
-import com.eduardo.moneysaver.core.domain.model.User;
 import com.eduardo.moneysaver.core.domain.repository.ContaRepository;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

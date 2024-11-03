@@ -3,7 +3,6 @@ package com.eduardo.moneysaver.core.application.controller.tags;
 import com.eduardo.moneysaver.core.application.controller.tags.dto.NewTagDto;
 import com.eduardo.moneysaver.core.application.controller.tags.dto.TagResp;
 import com.eduardo.moneysaver.core.application.service.tag.TagService;
-import com.eduardo.moneysaver.core.domain.model.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -24,9 +23,10 @@ public class TagsController {
     }
 
     @GetMapping
-    public ResponseEntity<List<TagResp>> listTags(){
+    public ResponseEntity<List<TagResp>> listTags() {
         return ResponseEntity.ok(this.tagService.listTags());
     }
+
     @PostMapping
     public ResponseEntity<TagResp> createTag(@RequestBody @Valid NewTagDto newTagDto, UriComponentsBuilder builder) {
         var tag = this.tagService.createTag(newTagDto);

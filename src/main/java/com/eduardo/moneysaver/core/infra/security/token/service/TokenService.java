@@ -44,7 +44,7 @@ public class TokenService {
         }
     }
 
-    private Instant genExpirationDate(){
+    private Instant genExpirationDate() {
         return LocalDateTime.now().plusHours(2).toInstant(ZoneOffset.of("Z")); // Z equivale a UTC
 				/*
 				Z – for UTC

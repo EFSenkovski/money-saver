@@ -7,7 +7,6 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import java.net.http.HttpResponse;
 import java.util.List;
 
 @RestControllerAdvice
@@ -20,6 +19,7 @@ public class ControllerExceptionHandler {
                 .toList();
         return ResponseEntity.badRequest().body(new ErrorMessage("Existem campos com valores inválidos", fields));
     }
+
     @ExceptionHandler(EntityNotFoundException.class)
     public ResponseEntity<?> EntityNotFoundExceptionHandler(EntityNotFoundException exception) {
         return ResponseEntity.badRequest().body(new ErrorResp(exception.getMessage()));
@@ -35,5 +35,6 @@ public class ControllerExceptionHandler {
         return ResponseEntity.badRequest().body(new ErrorResp(exception.getMessage()));
     }
 }
+
 record ErrorMessage(String error, List<String> details) {
 }

@@ -23,7 +23,6 @@ public class JwtTokenSecurityFilter extends OncePerRequestFilter {
     private final UserRepository userRepository;
 
 
-
     @Autowired
     public JwtTokenSecurityFilter(TokenService tokenService, UserRepository userRepository) {
         this.tokenService = tokenService;
@@ -45,6 +44,6 @@ public class JwtTokenSecurityFilter extends OncePerRequestFilter {
             var authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities()); // cria objeto authentication baseado no userDetails
             SecurityContextHolder.getContext().setAuthentication(authentication); // seta a authentication no contexto da requisição
         }
-        filterChain.doFilter(request,response);
+        filterChain.doFilter(request, response);
     }
 }
