@@ -1,0 +1,1 @@
+alter table movimentos add column status char(1) default 'E' check (status in ('P', 'E'));
