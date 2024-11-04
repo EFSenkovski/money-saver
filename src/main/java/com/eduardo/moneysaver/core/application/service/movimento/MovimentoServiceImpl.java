@@ -45,7 +45,7 @@ public class MovimentoServiceImpl implements MovimentoService {
     @Override
     public MovimentoResp createMovimento(NewMovimentoDto newMovimentoDto) {
         var user = this.currentUserProvider.getCurrentUser();
-        var conta = this.contaRepository.findByIdAndUser(newMovimentoDto.contaId(), this.currentUserProvider.getCurrentUser())
+        var conta = this.contaRepository.findByIdAndUser(newMovimentoDto.contaId(), user)
                 .orElseThrow(() -> new EntityNotFoundException("Conta fornecida é inválida"));
 
         var movimento = this.movimentoRepository.save(Movimento.newMovimento()

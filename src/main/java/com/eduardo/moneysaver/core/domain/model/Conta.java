@@ -45,6 +45,7 @@ public class Conta {
 
     public void updateSaldo(Double valor, TipoMovimento tipoMovimento) {
         LOGGER.info(String.format("Atualizando saldo da conta %s", id));
+        if (valor < 0) throw new IllegalArgumentException("Valor não pode ser menor do que 0");
         if (tipoMovimento.equals(TipoMovimento.E)) {
             this.saldo += valor;
         } else if (tipoMovimento.equals(TipoMovimento.S)) {
