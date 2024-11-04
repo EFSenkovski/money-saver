@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: ${POSTGRES_DB_URL}
+    url: jdbc:postgresql://${POSTGRES_DB_HOST}:${POSTGRES_DB_PORT}/${POSTGRES_DB_NAME}
     username: ${POSTGRES_DB_USERNAME}
     password: ${POSTGRES_DB_PASSWORD}
   jpa:
